@@ -1,0 +1,77 @@
+@font-face {
+  font-family: '8-bit';
+  src: url('../fonts/8-BIT WONDER.ttf')  format("truetype"),
+       local('8-bit');
+}
+
+@font-face {
+  font-family: '8-bit2';
+  src: url('../fonts/lunchds.ttf')  format("truetype"),
+       local('8-bit2');
+}
+
+.adventureBox
+{
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    margin: auto;
+    height: 500px;
+    width: 800px;
+    background-color: black;
+    border: 2px solid white;
+    border-radius: 25px;
+}
+
+.title {
+    color: white;
+    font-size: 50px;
+    text-align: center;
+    padding: 20px;
+    font-family: "8-bit";
+
+}
+
+.story {
+    color: white;
+    text-align: center;
+    font-family: "8-bit2";
+    font-size: 22px;
+}
+
+.choices{
+    color: white;
+    text-align: center;
+    font-family: "8-bit2";
+    font-size: 25px;
+    padding: 20px;
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    right: 0;
+}
+
+#button_choices {
+    padding: 18px;
+    color: white;
+    font-family: "8-bit2";
+    background-color: black;
+}
+
+
+
+body
+{
+    background-image: url("https://image.ibb.co/ksLhFL/planet.png");
+}
+
+svg {
+	background-color: black;
+}
+
+circle {
+	fill: white;
+}

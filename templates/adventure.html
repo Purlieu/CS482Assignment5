@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <script>
+    function updateData(data)
+    {
+        console.log(data)
+        var title = $(".title");
+        var story = $(".story");
+        var choices = $(".choices");
+        title.empty();
+        story.empty();
+        choices.empty();
+        title.append(data[0]);
+        story.append(data[1]);
+        for(var i = 2; i < data.length; i++) {
+            choices.append("<button id=" + "button_choices" + " class=" + data[i] +
+                " name=" + data[i] + "type=" + "button" + ">" + data[i] + "</button>")
+        }
+         $(":button").on('click', function () {
+                console.log("click")
+             var csrftoken = Cookies.get('csrftoken');
+            option = $(this).text()
+            console.log(option)
+             $.ajax({
+            "url":"http://127.0.0.1:8000/adventure/",
+            "method":"POST",
+                 "success" : updateData,
+            "headers":{"X-CSRFToken":csrftoken},
+            "data": {"option" : option}
+              })
+        });
+    }
+    $( document ).ready(function() {
+        console.log("Ready")
+        $(":button").on('click', function () {
+                console.log("click")
+             var csrftoken = Cookies.get('csrftoken');
+            option = $(this).text()
+            console.log(option)
+             $.ajax({
+            "url":"http://127.0.0.1:8000/adventure/",
+            "method":"POST",
+                 "success" : updateData,
+            "headers":{"X-CSRFToken":csrftoken},
+            "data": {"option" : option}
+      })
+        });
+    });
+    </script>
+<div class="adventureBox">
+    <div class="title">
+        {{ state.title }}
+    </div>
+    <div class="story">
+    {{ state.text }}
+    </div>
+    <div class="choices">
+    {% for i in options %}
+        <button id="button_choices" class="{{ i }}" name="{{ i }}" type="button"> {{ i }}</button>
+    {% endfor %}
+    </div>
+</div>
+{% endblock content %}
