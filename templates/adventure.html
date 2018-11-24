@@ -5,18 +5,25 @@
     function updateData(data)
     {
         console.log(data)
+        // Get the data back from the JSONResponse.
+        // Data is organized as follows
+        // Data[0] is the title from the state
+        // Data[1] is the story from the state
+        // Data[2 - n) where n = Data.length - 1 contains all the possible options
         var title = $(".title");
         var story = $(".story");
         var choices = $(".choices");
+        //Clear the html so we can repopulate with new title, story and options
         title.empty();
         story.empty();
         choices.empty();
+        //Append all the data.
         title.append(data[0]);
         story.append(data[1]);
         for(var i = 2; i < data.length; i++) {
-            choices.append("<button id=" + "button_choices" + " class=" + data[i] +
-                " name=" + data[i] + "type=" + "button" + ">" + data[i] + "</button>")
+            choices.append("<button id=" + "button_choices" + " type=" + "button" + ">" + data[i] + "</button>")
         }
+        //Reattach on clicks to all the buttons so they can refire the AJAX when pressed
          $(":button").on('click', function () {
                 console.log("click")
              var csrftoken = Cookies.get('csrftoken');
@@ -32,7 +39,7 @@
         });
     }
     $( document ).ready(function() {
-        console.log("Ready")
+        //When document starts, attach an AJAX request to each button upon clicking to send the server side.
         $(":button").on('click', function () {
                 console.log("click")
              var csrftoken = Cookies.get('csrftoken');
